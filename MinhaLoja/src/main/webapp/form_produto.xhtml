@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Cadastro de Produtos</title>
+</h:head>
+<h:body>
+	<h:form>
+		<div align="center">
+			<p:panelGrid columns="2">
+				<f:facet name="header">
+					<h:outputLabel value="Cadastro de Produtos" />
+				</f:facet>
+				<p:outputLabel value="Código" />
+				<p:inputText readonly="true" value="#{produtoCtrl.produto.id}" />
+				<p:outputLabel value="Nome" />
+				<p:inputText value="#{produtoCtrl.produto.nome}" />
+				<p:outputLabel value="Preço" />
+				<p:inputText value="#{produtoCtrl.produto.preco}">
+					<f:validateDoubleRange minimum="0.0" />
+				</p:inputText>
+			</p:panelGrid>
+
+		</div>
+		<p:growl id="messages" showDetail="false" />
+
+		<h3 style="margin-top: 0">Plain Menu</h3>
+		<p:menu>
+			<p:submenu label="Menu">
+				<p:menuitem value="Save"
+					actionListener="#{produtoCtrl.actionGravar}" update="messages"
+					icon="ui-icon-disk" />
+				<p:menuitem value="visualizar lista" action="lista_produto"
+					update="messages" icon="ui-icon-arrowrefresh-1-w" />
+			</p:submenu>
+			<p:submenu label="Navegação das páginas">
+				<p:menuitem value="Home" url="index.xhtml" icon="ui-icon-home" />
+				<p:menuitem value="Cadastro de Produtos" outcome="form_produto.xhtml"
+					icon="ui-icon-star" />
+				<p:menuitem value="Cadastro de Pessoas" outcome="form_cadusuario.xhtml"
+					icon="ui-icon-star" />
+			</p:submenu>
+		</p:menu>
+	</h:form>
+	<h:form>
+
+	</h:form>
+</h:body>
+</html>

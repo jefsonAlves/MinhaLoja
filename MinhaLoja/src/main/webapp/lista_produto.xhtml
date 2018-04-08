@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="resources/css/file.css" rel="Stylesheet" />
+	<title>Lista de Produtos</title>
+</h:head>
+<h:body>
+	<h:form prependId="false">
+		<div align="center">
+			<p:commandButton value="Inserir"
+				action="#{produtoCtrl.actionInserir}" />
+
+			<p:dataTable id="dataTableProduto" value="#{produtoCtrl.listagem}" var="produto">
+				<p:column headerText="Id">
+					<h:outputText value="#{produto.id}" />
+				</p:column>
+
+				<p:column headerText="Nome do Produto">
+					<h:outputText value="#{produto.nome}" />
+				</p:column>
+
+				<p:column headerText="Valor do Produto">
+					<h:outputText value="#{produto.preco}" />
+				</p:column>
+
+				<p:column headerText="Ações">
+					<p:commandButton value="Alterar"
+						action="form_produto">
+						<f:setPropertyActionListener value="#{produto}" target="#{produtoCtrl.produto}" />
+					</p:commandButton>
+					<p:commandButton value="Excluir" update="dataTableProduto"
+						action="#{produtoCtrl.actionExcluir(produto)}">
+					</p:commandButton>
+				</p:column>
+				<h:column>
+
+				</h:column>
+
+			</p:dataTable>
+		</div>
+	</h:form>
+</h:body>
+</html>
