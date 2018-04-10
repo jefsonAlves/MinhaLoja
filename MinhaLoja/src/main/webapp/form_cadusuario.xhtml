@@ -98,7 +98,7 @@
 				<p:outputLabel value="telefone" />
 				<p:inputText placeholder="Número" value="#{pessoaCtrl.fone.numero}"/>
 				<p:inputText placeholder="Descrição" value="#{pessoaCtrl.fone.descricao}"/>
-				<p:commandButton value="Salvar telefone" action="#{pessoaCtrl.adicionartelefone}" update=":formPessoa:gridTelefones, :formPessoa:gridTelefones"/>
+				<p:commandButton value="Salvar telefone" action="#{pessoaCtrl.adicionartelefone}" update=":formPessoa:gridTelefones, :formPessoa:tableTelefones"/>
 			</p:panelGrid>
 			<p:dataTable id="tableTelefones" value="#{pessoaCtrl.pessoa.fones}" var="fone">
 				<p:column headerText="Número">
@@ -108,16 +108,16 @@
 					<h:outputText value="#{fone.descricao}"/>
 				</p:column>
 				<p:column headerText="Ações">
-					<p:commandButton value="Alterar">
+					<p:commandButton value="Alterar" action="#{pessoaCtrl.actionAlterar(fone)}" update=":formPessoa:gridTelefones, :formPessoa:tableTelefones">
 
 					</p:commandButton>
 
-					<p:commandButton value="Excluir">
+					<p:commandButton value="Excluir" action="#{pessoaCtrl.actionExcluirFone(fone)}" update=":formPessoa:gridTelefones, :formPessoa:tableTelefones">
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 
-			<p:commandButton value="Salvar" update="formPessoa"
+			<p:commandButton value="Salvar" update="formPessoa:gridTelefones"
 				action="#{pessoaCtrl.actionGravar}">
 			</p:commandButton>
 		</div>

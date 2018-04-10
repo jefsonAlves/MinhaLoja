@@ -39,7 +39,7 @@ public class PessoaCtrl implements Serializable {
 	public List<Pessoa> getListagem() {
 		return PessoaDAO.listagem("");
 	}
-	
+
 	public List<Fone> getListagemF() {
 		return FoneDAO.listagemF("");
 	}
@@ -67,12 +67,16 @@ public class PessoaCtrl implements Serializable {
 		PessoaDAO.excluir(p);
 		return "lista_pessoa";
 	}
-	
-	public String actionAlterar(Pessoa p){
+
+	public void actionAlterar(Fone f) {
+		this.fone = f;
+	}
+
+	public String actionAlterar(Pessoa p) {
 		this.pessoa = p;
 		return "form_cadusuario";
 	}
-	
+
 	public void setPesquisa(String pesquisa) {
 		this.pesquisa = pesquisa;
 	}
@@ -94,20 +98,21 @@ public class PessoaCtrl implements Serializable {
 	}
 
 	public void adicionartelefone() {
-		fone.setPessoa(pessoa);
-		pessoa.getFones().add(fone);
+		if (!pessoa.getFones().contains(fone)) {
+			fone.setPessoa(pessoa);
+			pessoa.getFones().add(fone);
+		}
 		fone = new Fone();
 	}
 
-	public String actionExcluirFone(Fone f) {
-		FoneDAO fonedao = new FoneDAO();
+	public void actionExcluirFone(Fone f) {
+		FoneDAO.excluirFone(f);
 		getPessoa().getFones().remove(f);
-		fonedao.excluirFone(f);
-		return "lista_pessoa";
+
 	}
 
 	public Fone getFone() {
-		if(fone == null) {
+		if (fone == null) {
 			fone = new Fone();
 		}
 		return fone;
