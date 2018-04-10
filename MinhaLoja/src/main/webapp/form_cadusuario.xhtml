@@ -14,6 +14,8 @@
 <h:body>
 	<h:form id="formPessoa">
 		<div align="center">
+			<p:commandButton value="visualizar lista" action="lista_pessoa">
+			</p:commandButton>
 			<p:panelGrid columns="2">
 				<f:facet name="header">
 					<h:outputLabel value="Cadastro de Produtos" />
@@ -88,30 +90,39 @@
 				<h:selectOneMenu id="tipo" value="#{pessoaCtrl.pessoa.tipo}">
 					<f:selectItem itemLabel="M" itemValue="Masculino" />
 					<f:selectItem itemLabel="F" itemValue="Feminino" />
+
 				</h:selectOneMenu>
 
-				<p:column>
-					<p:outputLabel value="Numero" />
-					<p:inputMask mask="999999999" value="#{foneCtrl.fone.numero}" />
-				</p:column>
-				<p:column>
-					<p:outputLabel value="Descrição" />
-					<p:inputMask value="#{foneCtrl.fone.descricao}" />
-				</p:column>
-				<br />
-
 			</p:panelGrid>
-			<h:form align="center">
-				<p:commandButton value="Salvar número"
-					action="#{foneCtrl.actionInserirFone}">
-				</p:commandButton>
-				<p:commandButton value="Salvar Cadastro" update="formPessoa"
-					action="#{pessoaCtrl.actionGravar}">
-				</p:commandButton>
-				<p:commandButton value="visualizar cadastros" action="lista_pessoa">
-				</p:commandButton>
-			</h:form>
+			<p:panelGrid columns="4" id="gridTelefones">
+				<p:outputLabel value="telefone" />
+				<p:inputText placeholder="Número" value="#{pessoaCtrl.fone.numero}"/>
+				<p:inputText placeholder="Descrição" value="#{pessoaCtrl.fone.descricao}"/>
+				<p:commandButton value="Salvar telefone" action="#{pessoaCtrl.adicionartelefone}" update=":formPessoa:gridTelefones, :formPessoa:gridTelefones"/>
+			</p:panelGrid>
+			<p:dataTable id="tableTelefones" value="#{pessoaCtrl.pessoa.fones}" var="fone">
+				<p:column headerText="Número">
+					<h:outputText value="#{fone.numero}"/>
+				</p:column>
+				<p:column headerText="Descrição">
+					<h:outputText value="#{fone.descricao}"/>
+				</p:column>
+				<p:column headerText="Ações">
+					<p:commandButton value="Alterar">
+
+					</p:commandButton>
+
+					<p:commandButton value="Excluir">
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<p:commandButton value="Salvar" update="formPessoa"
+				action="#{pessoaCtrl.actionGravar}">
+			</p:commandButton>
 		</div>
+
 	</h:form>
+
 </h:body>
 </html>

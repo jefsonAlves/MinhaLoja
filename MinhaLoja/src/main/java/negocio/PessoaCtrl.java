@@ -19,6 +19,7 @@ public class PessoaCtrl implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Pessoa pessoa;
+	private Fone fone;
 	private String pesquisa;
 
 	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
@@ -35,8 +36,12 @@ public class PessoaCtrl implements Serializable {
 		this.pessoa = pessoa;
 	}
 
-	public List<Pessoa> listagem() {
+	public List<Pessoa> getListagem() {
 		return PessoaDAO.listagem("");
+	}
+	
+	public List<Fone> getListagemF() {
+		return FoneDAO.listagemF("");
 	}
 
 	public String getPesquisa() {
@@ -62,12 +67,12 @@ public class PessoaCtrl implements Serializable {
 		PessoaDAO.excluir(p);
 		return "lista_pessoa";
 	}
-
-	public String actionAlterar(Pessoa p) {
+	
+	public String actionAlterar(Pessoa p){
 		this.pessoa = p;
 		return "form_cadusuario";
 	}
-
+	
 	public void setPesquisa(String pesquisa) {
 		this.pesquisa = pesquisa;
 	}
@@ -86,6 +91,30 @@ public class PessoaCtrl implements Serializable {
 
 	public void setLista(List<Pessoa> lista) {
 		this.lista = lista;
+	}
+
+	public void adicionartelefone() {
+		fone.setPessoa(pessoa);
+		pessoa.getFones().add(fone);
+		fone = new Fone();
+	}
+
+	public String actionExcluirFone(Fone f) {
+		FoneDAO fonedao = new FoneDAO();
+		getPessoa().getFones().remove(f);
+		fonedao.excluirFone(f);
+		return "lista_pessoa";
+	}
+
+	public Fone getFone() {
+		if(fone == null) {
+			fone = new Fone();
+		}
+		return fone;
+	}
+
+	public void setFone(Fone fone) {
+		this.fone = fone;
 	}
 
 }

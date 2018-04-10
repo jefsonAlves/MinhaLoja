@@ -35,20 +35,4 @@ public class FoneDAO implements Serializable {
 		return lista;
 	}
 
-	public static void inserir(Fone fone) {
-		Session sessao = HibernateUtil.getSessionfactory().openSession();
-		Transaction t = sessao.beginTransaction();
-		sessao.save(fone);
-		t.commit();
-		sessao.close();
-	}
-	
-	public static void alterar(Fone fone) {
-		Session sessao = HibernateUtil.getSessionfactory().openSession();
-		Transaction t = sessao.beginTransaction();
-		sessao.update(fone);
-		t.commit();
-		sessao.close();
-	}
-
 }
