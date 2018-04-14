@@ -52,21 +52,18 @@
 				</p:column>
 				<p:column>
 					<f:facet name="header">Fone</f:facet>
-					<p:dataTable value="#{pessoaCtrl.listagemF}" var="fones">
-						<p:column>
-							<f:facet name="header">Número</f:facet>
-							<h:outputText value="#{fone.numero}" />
-						</p:column>
+					<ui:repeat value="#{pessoa.fones}" var="fone">
+						<h:outputText value="#{fone.numero}" />
 
-					</p:dataTable>
+					</ui:repeat>
 				</p:column>
 
 				<p:column headerText="Ações">
-					<p:commandButton value="Alterar"
-						action="form_cadusuario">
-						<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaCtrl.pessoa}" />
+					<p:commandButton value="Alterar" action="form_cadusuario">
+						<f:setPropertyActionListener value="#{pessoa}"
+							target="#{pessoaCtrl.pessoa}" />
 					</p:commandButton>
-	
+
 					<p:commandButton value="Excluir" update="dataTablePessoa"
 						action="#{pessoaCtrl.actionExcluir(pessoa)}">
 					</p:commandButton>

@@ -26,7 +26,7 @@ public class FoneDAO implements Serializable {
 		if(filtro.trim().length() == 0){
 			consulta = sessao.createQuery("from Fone order by fon_numero");
 		} else {
-			consulta = sessao.createQuery("from Pessoa "
+			consulta = sessao.createQuery("from Fone "
 					+ "where fon_numero like :parametro order by fon_numero");
 			consulta.setString("parametro", "%" + filtro + "%");
 		}
