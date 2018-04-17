@@ -11,6 +11,17 @@
 </h:head>
 <h:body>
 	<h:form>
+		<p:tabMenu>
+			<p:menuitem value="Cadastro de Usuário"
+				outcome="/form_cadusuario.xhtml" icon="ui-icon-star">
+				<f:param name="i" value="0" />
+			</p:menuitem>
+
+			<p:menuitem value="Forma de Pagamento" outcome="/FormaPgto.xhtml"
+				icon="ui-icon-star">
+				<f:param name="i" value="0" />
+			</p:menuitem>
+		</p:tabMenu>
 		<div align="center">
 			<p:panelGrid columns="2">
 				<f:facet name="header">
@@ -40,10 +51,10 @@
 			</p:submenu>
 			<p:submenu label="Navegação das páginas">
 				<p:menuitem value="Home" url="index.xhtml" icon="ui-icon-home" />
-				<p:menuitem value="Cadastro de Produtos" outcome="form_produto.xhtml"
-					icon="ui-icon-star" />
-				<p:menuitem value="Cadastro de Pessoas" outcome="form_cadusuario.xhtml"
-					icon="ui-icon-star" />
+				<p:menuitem value="Cadastro de Produtos"
+					outcome="form_produto.xhtml" icon="ui-icon-star" />
+				<p:menuitem value="Cadastro de Pessoas"
+					outcome="form_cadusuario.xhtml" icon="ui-icon-star" />
 			</p:submenu>
 		</p:menu>
 	</h:form>
